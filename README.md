@@ -1,8 +1,3 @@
-# React + Vite
+## Gridiron 
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+A platform for fantasy football enthusiasts. Gridiron serves as a centralized hub where you can customize league rules, celebrate champions, and access engaging statistics and historical records. Whether you're using Sleeper, ESPN, NFL, or Yahoo, Gridiron enhances your fantasy experience by providing a streamlined way to manage your league and showcase achievements. Elevate your game and gain valuable insights into your fantasy journey with Gridiron.
