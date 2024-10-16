@@ -40,7 +40,8 @@ This system aims to enhance fantasy football leagues by providing features not t
 - name
 - created_at
 - updated_at
-- associated_app (e.g., ESPN, Yahoo, NFL)
+- associated_app (e.g., Sleper, ESPN, Yahoo, NFL)
+- Init ingegration with "Sleeper" app
 
 ### Team
 - name
