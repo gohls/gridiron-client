@@ -86,5 +86,4 @@ Developing a clean interface will be low priority. Creating all the logic and en
 
 ## Future/Other Ideas
 
-## UI Mock Ups
-[Home.pdf](https://github.com/user-attachments/files/17500889/Home.pdf)
+## Wireframe
