@@ -1,4 +1,4 @@
-import viteLogo from '@/vite.svg'
+import viteLogo from '@/assets/vite.svg'
 import reactLogo from '@/assets/react.svg'
 import { Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
