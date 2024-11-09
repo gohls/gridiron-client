@@ -1,4 +1,4 @@
-import NavigationMenu from '../navigation/NavigationMenu';
+import NavigationMenu from '@/components/navigation/NavigationMenu';
 
 const Header = () => {
     return <NavigationMenu />
