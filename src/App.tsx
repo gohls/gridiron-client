@@ -1,8 +1,8 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Header from './components/layout/Header';
-import Dashboard from './pages/Dashboard';
-import Rules from './pages/Rules';
-import Champion from './pages/Champion';
+import Header from '@/components/layout/Header';
+import Dashboard from '@/pages/Dashboard';
+import Rules from '@/pages/Rules';
+import Champion from '@/pages/Champion';
 
 
 const App = () => {
