@@ -1,8 +1,9 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Header from '@/components/layout/Header';
 import Dashboard from '@/pages/Dashboard';
-import Rules from '@/pages/Rules';
+import Rules from '@/pages/RuleBook';
 import Champion from '@/pages/Champion';
+import SignUp from '@/pages/SignUp';
 
 
 const App = () => {
@@ -15,6 +16,7 @@ const App = () => {
           <Route path="/" element={<Dashboard />} />
             <Route path="/rules" element={<Rules />} />
             <Route path="/champion" element={<Champion />} />
+            <Route path="/signup" element={<SignUp />} />
           </Routes>
         </main>
       </div>
