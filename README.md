@@ -87,3 +87,10 @@ Developing a clean interface will be low priority. Creating all the logic and en
 ## Future/Other Ideas
 
 ## Wireframe
+
+
+## 
+Maybe want to use this Markdown editor 
+
+https://www.npmjs.com/package/@uiw/react-markdown-editor
+
