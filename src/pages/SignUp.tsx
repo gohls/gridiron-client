@@ -1,4 +1,4 @@
-const SignUp = () => {
+const Signup = () => {
   return (
     <>
       <div className="flex min-h-full flex-1 flex-col justify-center py-12 sm:px-6 lg:px-8">
@@ -36,6 +36,23 @@ const SignUp = () => {
                   />
                 </div>
               </div>
+
+              <div>
+                <label htmlFor="leagueId" className="block text-sm/6 font-medium text-gray-900">
+                  Sleeper League ID
+                </label>
+                <div className="mt-2">
+                  <input
+                    id="leagueId"
+                    name="leagueId"
+                    type="text"
+                    required
+                    autoComplete="current-leagueId"
+                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm/6"
+                  />
+                </div>
+              </div>
+
               <div>
                 <button
                   type="submit"
@@ -102,5 +119,5 @@ const SignUp = () => {
   )
 }
 
-export default SignUp;
+export default Signup;
   
