@@ -1,6 +1,6 @@
 import { createContext, useState, useEffect } from 'react';
 import axios, { AxiosError } from 'axios';
-import { AuthContextType, AuthProviderProps, Credentials } from '@/types/auth';
+import { AuthContextType, AuthProviderProps, Credentials, SignupCredentials } from '@/types/auth';
 
 
 export const AuthContext = createContext<AuthContextType | null>(null);
@@ -23,7 +23,18 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     }
   };
 
-  const login = async (credentials: Credentials): Promise<any> => {
+  const signup = async (credentials: SignupCredentials): Promise<any> => {
+    try {
+      const response = await axios.post('/api/auth/signup', credentials, { withCredentials: true });
+      setIsAuthenticated(true);
+      return response.data;
+    } catch (error) {
+      console.log(error);
+      throw error;
+    }
+  };
+
+  const signin = async (credentials: Credentials): Promise<any> => {
     try {
       const response = await axios.post('/api/auth/login', credentials, { withCredentials: true });
       setIsAuthenticated(true);
@@ -55,9 +66,10 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
   const contextValue: AuthContextType = {
     isAuthenticated,
-    login,
+    signup,
+    signin,
     logout,
-    refreshToken
+    refreshToken, 
   };
 
   return (
