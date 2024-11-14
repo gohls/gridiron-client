@@ -1,7 +1,7 @@
 import useApi from '@/hooks/useApi';
 
 const Champion = () => {
-  const { data, loading, error } = useApi('league/champion');
+  const { data, loading, error } = useApi('api/sleeper/league/champion');
     
   if (loading) return <p>Loading...</p>;
   if (error) return <p>{error.message}</p>;
