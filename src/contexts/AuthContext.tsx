@@ -15,7 +15,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
   const checkAuthStatus = async (): Promise<void> => {
     try {
-      const response = await axios.get<{ isAuthenticated: boolean }>('/api/auth/status', { withCredentials: true });
+      const response = await axios.get<{ isAuthenticated: boolean }>('http://127.0.0.1:8000/api/core/auth/status', { withCredentials: true });
       setIsAuthenticated(response.data.isAuthenticated);
     } catch (error) {
       console.log(error)
@@ -25,7 +25,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
   const signup = async (credentials: SignupCredentials): Promise<any> => {
     try {
-      const response = await axios.post('/api/auth/signup', credentials, { withCredentials: true });
+      const response = await axios.post('http://127.0.0.1:8000/api/auth/signup/', credentials, { withCredentials: true });
       setIsAuthenticated(true);
       return response.data;
     } catch (error) {
@@ -36,7 +36,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
   const signin = async (credentials: Credentials): Promise<any> => {
     try {
-      const response = await axios.post('/api/auth/login', credentials, { withCredentials: true });
+      const response = await axios.post('http://127.0.0.1:8000/api/auth/login/', credentials, { withCredentials: true });
       setIsAuthenticated(true);
       return response.data;
     } catch (error) {
@@ -47,7 +47,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
   const logout = async (): Promise<void> => {
     try {
-      await axios.post('/api/auth/logout', {}, { withCredentials: true });
+      await axios.post('http://127.0.0.1:8000/api/auth/logout/', {}, { withCredentials: true });
       setIsAuthenticated(false);
     } catch (error) {
       console.error('Logout failed', error);
@@ -56,7 +56,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
   const refreshToken = async (): Promise<void> => {
     try {
-      await axios.post('/api/auth/refresh', {}, { withCredentials: true });
+      await axios.post('http://127.0.0.1:8000/api/auth/refresh/', {}, { withCredentials: true });
       setIsAuthenticated(true);
     } catch (error) {
       setIsAuthenticated(false);
