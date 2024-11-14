@@ -2,7 +2,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import { AuthProvider } from '@/contexts/AuthContext';
 import Header from '@/components/layout/Header';
 import AxiosInterceptor from '@/components/AxiosInterceptor';
-import AppRoute from '@/routes';
+import AppRoute from '@/routes/AppRoute';
 
 
 const App = () => {
