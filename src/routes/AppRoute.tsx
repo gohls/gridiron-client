@@ -18,8 +18,8 @@ const AppRoute = () => {
       <Route path="/" element={<Dashboard />} />
       <Route path="/rulebook" element={<Rulebook />} />
       <Route path="/champion" element={<Champion />} />
-      <Route path="/signup" element={<SignUp />} />
       <Route path="/signin" element={<SignIn />} />
+      <Route path="/signup" element={<SignUp />} />
 
       <Route path="*" element={<NotFound />} />
     </Routes>
