@@ -1,3 +1,12 @@
+interface ImportMeta {
+  env: {
+    REACT_APP_API_BASE_URL: string;
+    AUTH_HEADER_PREFIX: string;
+    AUTH_SECRET_KEY: string;
+    AUTH_TOKEN_KEY: string;
+  };
+}
+
 declare module '*.svg' {
   import * as React from 'react';
 
