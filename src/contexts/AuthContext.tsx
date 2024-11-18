@@ -21,14 +21,12 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
   const getToken = (): string | null => {
     if (token) {
-      console.log('State Token: ', token);
       return token;
     }
     const encryptedToken = sessionStorage.getItem(env.AUTH_TOKEN_KEY);
     if (encryptedToken) {
       try {
         const decryptedToken = decryptToken(encryptedToken);
-        console.log('Decrypted Token: ', decryptedToken);
         return decryptedToken;
       } catch (error) {
         console.error('Failed to decrypt token', error);
@@ -70,7 +68,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       } catch (error) {
         console.error('Auth status check failed', error);
         setIsAuthenticated(false);
-        setStateAndSessionToken(null);
+        //setStateAndSessionToken(null);
       }
     } else {
       setIsAuthenticated(false);
@@ -79,8 +77,9 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
   const signup = async (credentials: SignupCredentials): Promise<any> => {
     try {
-      const response = await post<any>('auth/signup/', credentials);
-      console.log('Response Token: ', response.token);
+      const response = await post<any>('auth/signup/', credentials, {
+        withCredentials: false,
+      });
       setStateAndSessionToken(response.token);
       setIsAuthenticated(true);
       return response;
@@ -92,7 +91,9 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
   const signin = async (credentials: Credentials): Promise<any> => {
     try {
-      const response = await post<any>('auth/login/', credentials);
+      const response = await post<any>('auth/login/', credentials, {
+        withCredentials: false,
+      });
       setStateAndSessionToken(response.token);
       setIsAuthenticated(true);
       return response;
