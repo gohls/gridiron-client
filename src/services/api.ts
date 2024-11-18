@@ -1,14 +1,14 @@
-import axios from 'axios';
+import env from '@/config/env';
+import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
 
-const API_BASE_URL = 'http://127.0.0.1:8000/';
-
-const api = axios.create({
-  baseURL: API_BASE_URL,
+const api: AxiosInstance = axios.create({
+  baseURL: env.API_BASE_URL,
+  withCredentials: true,
 });
 
-export const fetchData = async (endpoint: string) => {
+const request = async <T>(config: AxiosRequestConfig): Promise<T> => {
   try {
-    const response = await api.get(endpoint);
+    const response: AxiosResponse<T> = await api(config);
     return response.data;
   } catch (error) {
     console.error('API Error:', error);
@@ -16,12 +16,15 @@ export const fetchData = async (endpoint: string) => {
   }
 };
 
-export const postData = async (endpoint: string, data: any) => {
-  try {
-    const response = await api.post(endpoint, data);
-    return response.data;
-  } catch (error) {
-    console.error('API Error:', error);
-    throw error;
-  }
-};
+export const get = <T>(url: string, config?: AxiosRequestConfig) =>
+  request<T>({ ...config, method: 'get', url });
+export const post = <T>(url: string, data?: any, config?: AxiosRequestConfig) =>
+  request<T>({ ...config, method: 'post', url, data });
+
+export const put = <T>(url: string, data?: any, config?: AxiosRequestConfig) =>
+  request<T>({ ...config, method: 'put', url, data });
+
+export const del = <T>(url: string, config?: AxiosRequestConfig) =>
+  request<T>({ ...config, method: 'delete', url });
+
+export default api;
