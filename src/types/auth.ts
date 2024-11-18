@@ -1,22 +1,22 @@
-import { ReactNode } from "react";
+import { ReactNode } from 'react';
 
 export interface Credentials {
-    username: string;
-    password: string;
+  username: string;
+  password: string;
 }
 
 export interface SignupCredentials extends Credentials {
-    email: string;
+  email: string;
 }
-  
+
 export interface AuthProviderProps {
-    children: ReactNode;
+  children: ReactNode;
 }
 
 export interface AuthContextType {
-    isAuthenticated: boolean;
-    signup: (credentials: SignupCredentials) => Promise<any>;
-    signin: (credentials: Credentials) => Promise<any>;
-    logout: () => Promise<void>;
-    refreshToken: () => Promise<void>;
+  isAuthenticated: boolean;
+  signup: (credentials: SignupCredentials) => Promise<any>;
+  signin: (credentials: Credentials) => Promise<any>;
+  logout: () => Promise<void>;
+  getToken: () => string | null;
 }

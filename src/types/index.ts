@@ -1,5 +1,4 @@
-interface ChampionData {
-    name: string;
+export interface ChampionData {
+  display_name: string;
+  username: string;
 }
-
-export default ChampionData;
