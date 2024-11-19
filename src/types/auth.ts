@@ -17,6 +17,6 @@ export interface AuthContextType {
   isAuthenticated: boolean;
   signup: (credentials: SignupCredentials) => Promise<any>;
   signin: (credentials: Credentials) => Promise<any>;
-  logout: () => Promise<void>;
+  signout: () => Promise<void>;
   getToken: () => string | null;
 }
