@@ -3,7 +3,7 @@ import { ChampionData } from '@/types';
 
 const Champion = () => {
   const { data, loading, error } = useApi<ChampionData>({
-    endpoint: 'sleeper/league/champion/',
+    endpoint: 'sleeper/leagues/champion/',
   });
 
   if (loading) return <div>Loading...</div>;

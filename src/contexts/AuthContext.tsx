@@ -91,7 +91,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
   const signin = async (credentials: Credentials): Promise<any> => {
     try {
-      const response = await post<any>('auth/login/', credentials, {
+      const response = await post<any>('auth/signin/', credentials, {
         withCredentials: false,
       });
       setStateAndSessionToken(response.token);
@@ -103,11 +103,11 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     }
   };
 
-  const logout = async (): Promise<void> => {
+  const signout = async (): Promise<void> => {
     try {
-      await post('auth/logout/', {});
+      await post('auth/signout/', {});
     } catch (error) {
-      console.error('Logout failed', error);
+      console.error('Sign out failed', error);
     } finally {
       setStateAndSessionToken(null);
       setIsAuthenticated(false);
@@ -118,7 +118,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     isAuthenticated,
     signup,
     signin,
-    logout,
+    signout,
     getToken,
   };
 

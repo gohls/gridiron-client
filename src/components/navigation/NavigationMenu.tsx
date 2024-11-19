@@ -14,11 +14,11 @@ import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import { useAuth } from '@/hooks/useAuth';
 
 const NavigationMenu = () => {
-  const { logout } = useAuth();
+  const { signout } = useAuth();
 
   const handleSignOut = async () => {
     try {
-      await logout();
+      await signout();
       console.log('Sign out successful!');
       // redirect
     } catch (error) {
@@ -141,12 +141,12 @@ const NavigationMenu = () => {
                   </a>
                 </MenuItem>
                 <MenuItem>
-                  <a
-                    href="#"
+                  <NavLink
+                    to="/settings"
                     className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100"
                   >
                     Settings
-                  </a>
+                  </NavLink>
                 </MenuItem>
                 <MenuItem>
                   <button
