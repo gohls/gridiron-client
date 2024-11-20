@@ -7,12 +7,14 @@ import Champion from '@/pages/Champion';
 import NotFound from '@/pages/NotFound';
 import SignUp from '@/pages/SignUp';
 import SignIn from '@/pages/SignIn';
+import Profile from '@/pages/Profile';
 
 const AppRoute = () => {
   return (
     <Routes>
       <Route element={<ProtectedRoute />}>
         <Route path="/settings" element={<Settings />} />
+        <Route path="/profile" element={<Profile />} />
       </Route>
 
       <Route path="/" element={<Dashboard />} />

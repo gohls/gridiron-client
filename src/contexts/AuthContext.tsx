@@ -1,10 +1,12 @@
 import { createContext, useState, useEffect } from 'react';
 import { get, post } from '@/services/api';
 import {
+  AuthResponse,
   AuthContextType,
   AuthProviderProps,
   Credentials,
   SignupCredentials,
+  User,
 } from '@/types/auth';
 import CryptoJS from 'crypto-js';
 import env from '@/config/env';
@@ -12,6 +14,7 @@ import env from '@/config/env';
 export const AuthContext = createContext<AuthContextType | null>(null);
 
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
+  const [user, setUser] = useState<User | null>(null);
   const [token, setToken] = useState<string | null>(null);
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
 
@@ -63,12 +66,12 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     const authToken = token || getToken();
     if (authToken) {
       try {
-        const response = await get<{ isAuthenticated: boolean }>('auth/status');
+        const response = await get<AuthResponse>('auth/status');
         setIsAuthenticated(response.isAuthenticated);
       } catch (error) {
         console.error('Auth status check failed', error);
         setIsAuthenticated(false);
-        //setStateAndSessionToken(null);
+        setStateAndSessionToken(null);
       }
     } else {
       setIsAuthenticated(false);
@@ -77,11 +80,12 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
   const signup = async (credentials: SignupCredentials): Promise<any> => {
     try {
-      const response = await post<any>('auth/signup/', credentials, {
+      const response = await post<AuthResponse>('auth/signup/', credentials, {
         withCredentials: false,
       });
       setStateAndSessionToken(response.token);
       setIsAuthenticated(true);
+      setUser(response.user);
       return response;
     } catch (error) {
       console.error('Signup failed', error);
@@ -91,11 +95,12 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
   const signin = async (credentials: Credentials): Promise<any> => {
     try {
-      const response = await post<any>('auth/signin/', credentials, {
+      const response = await post<AuthResponse>('auth/signin/', credentials, {
         withCredentials: false,
       });
       setStateAndSessionToken(response.token);
       setIsAuthenticated(true);
+      setUser(response.user);
       return response;
     } catch (error) {
       console.error('Signin failed', error);
@@ -111,10 +116,12 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     } finally {
       setStateAndSessionToken(null);
       setIsAuthenticated(false);
+      setUser(null);
     }
   };
 
   const contextValue: AuthContextType = {
+    user,
     isAuthenticated,
     signup,
     signin,
