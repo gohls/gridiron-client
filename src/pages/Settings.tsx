@@ -1,5 +1,8 @@
+import { useAuth } from '@/hooks/useAuth';
+
 const Settings = () => {
-    return "Hello Settings"
+  const { user } = useAuth();
+  return <div>User ID: {user?.id}</div>;
 };
-  
+
 export default Settings;
