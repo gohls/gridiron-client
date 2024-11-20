@@ -9,7 +9,7 @@ interface UseApiOptions<T> {
   body?: any;
 }
 
-function useApi<T>({ endpoint, method = 'GET', body }: UseApiOptions<T>) {
+const useApi = <T>({ endpoint, method = 'GET', body }: UseApiOptions<T>) => {
   const [data, setData] = useState<T | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
@@ -49,6 +49,6 @@ function useApi<T>({ endpoint, method = 'GET', body }: UseApiOptions<T>) {
   }, [endpoint, method, body]);
 
   return { data, loading, error };
-}
+};
 
 export default useApi;
