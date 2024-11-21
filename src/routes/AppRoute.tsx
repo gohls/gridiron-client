@@ -18,7 +18,7 @@ const AppRoute = () => {
         <Route path="/profile" element={<Profile />} />
       </Route>
 
-      <Route path="/fantasy-setup" element={<TempFantasySetup />} />
+      <Route path="/fantasy-user-setup" element={<TempFantasySetup />} />
       <Route path="/" element={<Dashboard />} />
       <Route path="/rulebook" element={<Rulebook />} />
       <Route path="/champion" element={<Champion />} />

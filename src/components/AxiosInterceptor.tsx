@@ -3,12 +3,12 @@ import { useAuth } from '@/hooks/useAuth';
 import api from '@/services/api';
 
 const AxiosInterceptor = () => {
-  const { isAuthenticated, getToken } = useAuth();
+  const { getToken } = useAuth();
   const token = getToken();
 
   api.interceptors.request.use(
     (config) => {
-      if (isAuthenticated && token && config.withCredentials) {
+      if (token && config.withCredentials) {
         config.headers['Authorization'] = `${env.AUTH_HEADER_PREFIX} ${token}`;
       }
       return config;
