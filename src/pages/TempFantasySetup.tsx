@@ -1,13 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { post } from '@/services/api';
-import { SleeperSetupResponseData } from '@/types/sleeper';
+import { SleeperUser } from '@/types/sleeper';
+import { useNavigate } from 'react-router-dom';
+
+const SLEEPER_AVATAR_URL = 'https://sleepercdn.com/avatars';
 
 const TempFantasySetup = () => {
   const [username, setUsername] = useState('');
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
-  const [sleeperData, setSleeperData] =
-    useState<SleeperSetupResponseData | null>(null);
+  const [verifyLoading, setVerifyLoading] = useState(false);
+  const [sleeperUser, setSleeperUser] = useState<SleeperUser | null>(null);
+
+  const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -15,14 +20,42 @@ const TempFantasySetup = () => {
     setLoading(true);
 
     try {
-      const data = await post<SleeperSetupResponseData>('sleeper/user/setup/', {
+      const data = await post<SleeperUser>('sleeper/user/fetch/', {
         username,
       });
-      setSleeperData(data);
-    } catch (err: any) {
-      setError(err.response?.data?.message || 'An unexpected error occurred.');
+      setSleeperUser(data);
+    } catch (err) {
+      if (err instanceof Error) {
+        setError(err.message);
+      } else {
+        setError('An unexpected error occurred.');
+      }
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handleVerify = async () => {
+    if (!sleeperUser) return;
+
+    setError(null);
+    setVerifyLoading(true);
+
+    try {
+      const response = await post('sleeper/user/create/', {
+        username: sleeperUser.username,
+      });
+
+      console.log('User verified and created:', response);
+      navigate('/profile');
+    } catch (err) {
+      if (err instanceof Error) {
+        setError(err.message);
+      } else {
+        setError('Failed to verify user.');
+      }
+    } finally {
+      setVerifyLoading(false);
     }
   };
 
@@ -36,7 +69,7 @@ const TempFantasySetup = () => {
                 htmlFor="username"
                 className="block text-sm font-medium text-gray-900"
               >
-                Sleeper Username
+                Enter your Sleeper username
               </label>
               <div className="mt-2">
                 <input
@@ -54,8 +87,8 @@ const TempFantasySetup = () => {
 
             {loading && <div className="text-red-500">Loading...</div>}
             {error && <div className="text-red-500">{error}</div>}
-            {sleeperData && (
-              <div className="text-green-500">{sleeperData.username}</div>
+            {sleeperUser && (
+              <div className="text-green-500">{sleeperUser.username}</div>
             )}
 
             <div>
@@ -67,6 +100,37 @@ const TempFantasySetup = () => {
               </button>
             </div>
           </form>
+          <div className="max-w-2xl pt-12 ">
+            <fieldset>
+              {sleeperUser && (
+                <div className="space-y-10">
+                  <div className="flex items-center gap-x-6 ">
+                    <img
+                      alt=""
+                      src={`${SLEEPER_AVATAR_URL}/${sleeperUser.avatar}`}
+                      className="size-16 rounded-full"
+                    />
+                    <div>
+                      <h3 className="text-base/7 font-semibold tracking-tight text-gray-900">
+                        {sleeperUser?.username}
+                      </h3>
+                      <p className="text-sm/6 font-semibold text-indigo-600">
+                        {sleeperUser?.display_name}
+                      </p>
+                    </div>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={handleVerify}
+                    className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                    disabled={verifyLoading}
+                  >
+                    {verifyLoading ? 'Verifying...' : 'Verify'}
+                  </button>
+                </div>
+              )}
+            </fieldset>
+          </div>
         </div>
       </div>
     </div>

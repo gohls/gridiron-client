@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { useAuth } from '@/hooks/useAuth'; 
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '@/hooks/useAuth';
 
 const SignUp = () => {
   const { signup } = useAuth();
@@ -9,13 +10,16 @@ const SignUp = () => {
   const [error, setError] = useState<string | null>(null);
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
 
+  const navigate = useNavigate();
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setError(null); 
+    setError(null);
 
     try {
-      await signup({ email, password, username }); 
+      await signup({ email, password, username });
       setSuccessMessage('Signup successful!');
+      navigate('/fantasy-user-setup');
     } catch (err) {
       if (err instanceof Error) {
         setError(err.message);
@@ -31,7 +35,10 @@ const SignUp = () => {
         <div className="bg-white px-6 py-12 shadow sm:rounded-lg sm:px-12">
           <form onSubmit={handleSubmit} className="space-y-6">
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-900">
+              <label
+                htmlFor="email"
+                className="block text-sm font-medium text-gray-900"
+              >
                 Email address
               </label>
               <div className="mt-2">
@@ -49,7 +56,10 @@ const SignUp = () => {
             </div>
 
             <div>
-              <label htmlFor="password" className="block text-sm font-medium text-gray-900">
+              <label
+                htmlFor="password"
+                className="block text-sm font-medium text-gray-900"
+              >
                 Password
               </label>
               <div className="mt-2">
@@ -67,7 +77,10 @@ const SignUp = () => {
             </div>
 
             <div>
-              <label htmlFor="username" className="block text-sm font-medium text-gray-900">
+              <label
+                htmlFor="username"
+                className="block text-sm font-medium text-gray-900"
+              >
                 Username
               </label>
               <div className="mt-2">
@@ -84,7 +97,9 @@ const SignUp = () => {
             </div>
 
             {error && <div className="text-red-500">{error}</div>}
-            {successMessage && <div className="text-green-500">{successMessage}</div>}
+            {successMessage && (
+              <div className="text-green-500">{successMessage}</div>
+            )}
 
             <div>
               <button
