@@ -67,11 +67,12 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     if (authToken) {
       try {
         const response = await get<AuthResponse>('auth/status');
+        setUser(response.user);
         setIsAuthenticated(response.isAuthenticated);
       } catch (error) {
         console.error('Auth status check failed', error);
-        setIsAuthenticated(false);
-        setStateAndSessionToken(null);
+        // setIsAuthenticated(false);
+        // setStateAndSessionToken(null);
       }
     } else {
       setIsAuthenticated(false);
