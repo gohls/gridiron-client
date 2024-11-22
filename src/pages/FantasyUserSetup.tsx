@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { post } from '@/services/api';
 import { SleeperUser } from '@/types/sleeper';
 import { useNavigate } from 'react-router-dom';
 
 const SLEEPER_AVATAR_URL = 'https://sleepercdn.com/avatars';
 
-const TempFantasySetup = () => {
+const FantasyUserSetup = () => {
   const [username, setUsername] = useState('');
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
@@ -137,4 +137,4 @@ const TempFantasySetup = () => {
   );
 };
 
-export default TempFantasySetup;
+export default FantasyUserSetup;
