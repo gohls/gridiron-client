@@ -8,7 +8,7 @@ import NotFound from '@/pages/NotFound';
 import SignUp from '@/pages/SignUp';
 import SignIn from '@/pages/SignIn';
 import Profile from '@/pages/Profile';
-import TempFantasySetup from '@/pages/TempFantasySetup';
+import FantasyUserSetup from '@/pages/FantasyUserSetup';
 
 const AppRoute = () => {
   return (
@@ -18,7 +18,7 @@ const AppRoute = () => {
         <Route path="/profile" element={<Profile />} />
       </Route>
 
-      <Route path="/fantasy-user-setup" element={<TempFantasySetup />} />
+      <Route path="/fantasy-user-setup" element={<FantasyUserSetup />} />
       <Route path="/" element={<Dashboard />} />
       <Route path="/rulebook" element={<Rulebook />} />
       <Route path="/champion" element={<Champion />} />
