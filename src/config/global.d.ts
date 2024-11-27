@@ -4,6 +4,7 @@ interface ImportMeta {
     AUTH_HEADER_PREFIX: string;
     AUTH_SECRET_KEY: string;
     AUTH_TOKEN_KEY: string;
+    SLEEPER_AVATARS_BASE_URL: string;
   };
 }
 
