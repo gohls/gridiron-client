@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useAuth } from '@/hooks/useAuth';
+import { useNavigate } from 'react-router-dom';
 
 const SignIn = () => {
   const { signin } = useAuth();
@@ -8,13 +9,16 @@ const SignIn = () => {
   const [error, setError] = useState<string | null>(null);
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
 
+  const navigate = useNavigate();
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
 
     try {
-      await signin({ username, password }); // Call signin with email and password
+      await signin({ username, password });
       setSuccessMessage('Sign-in successful!');
+      navigate('/');
     } catch (err) {
       if (err instanceof Error) {
         setError(err.message);
