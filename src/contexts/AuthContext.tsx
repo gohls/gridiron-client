@@ -26,7 +26,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     if (token) {
       return token;
     }
-    const encryptedToken = sessionStorage.getItem(env.AUTH_TOKEN_KEY);
+    const encryptedToken = localStorage.getItem(env.AUTH_TOKEN_KEY);
     if (encryptedToken) {
       try {
         const decryptedToken = decryptToken(encryptedToken);
@@ -47,9 +47,9 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const setSessionToken = (token: string | null) => {
     if (token) {
       const encryptedToken = encryptToken(token);
-      sessionStorage.setItem(env.AUTH_TOKEN_KEY, encryptedToken);
+      localStorage.setItem(env.AUTH_TOKEN_KEY, encryptedToken);
     } else {
-      sessionStorage.removeItem(env.AUTH_TOKEN_KEY);
+      localStorage.removeItem(env.AUTH_TOKEN_KEY);
     }
   };
 
