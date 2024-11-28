@@ -31,5 +31,6 @@ export interface AuthContextType {
   signup: (credentials: SignupCredentials) => Promise<any>;
   signin: (credentials: Credentials) => Promise<any>;
   signout: () => Promise<void>;
+  checkAuthStatus: () => Promise<any>;
   getToken: () => string | null;
 }

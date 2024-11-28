@@ -1,30 +1,43 @@
-import { Route, Routes } from 'react-router-dom';
+import { Outlet, Route, Routes } from 'react-router-dom';
+import { Suspense } from 'react';
 import ProtectedRoute from '@/routes/ProtectedRoute';
-import Settings from '@/pages/Settings';
-import Dashboard from '@/pages/Dashboard';
-import Rulebook from '@/pages/Rulesbook';
-import Champion from '@/pages/Champion';
 import NotFound from '@/pages/NotFound';
 import SignUp from '@/pages/SignUp';
 import SignIn from '@/pages/SignIn';
-import Profile from '@/pages/Profile';
 import FantasyUserSetup from '@/pages/FantasyUserSetup';
+import AppStackedLayout from '@/layout/AppStackedLayout';
+import AppNavbar from '@/components/navigation/AppNavbar';
+import AppSidebar from '@/components/navigation/AppSidebar';
+import { ROUTES, protectedRoutes } from '@/routes/routeConfig';
 
 const AppRoute = () => {
   return (
     <Routes>
+      <Route path={ROUTES.FANTASY_USER_SETUP} element={<FantasyUserSetup />} />
+      <Route path={ROUTES.SIGNIN} element={<SignIn />} />
+      <Route path={ROUTES.SIGNUP} element={<SignUp />} />
+
       <Route element={<ProtectedRoute />}>
-        <Route path="/settings" element={<Settings />} />
-        <Route path="/profile" element={<Profile />} />
+        <Route
+          element={
+            <AppStackedLayout navbar={<AppNavbar />} sidebar={<AppSidebar />}>
+              <Outlet />
+            </AppStackedLayout>
+          }
+        >
+          {protectedRoutes.map(({ path, element: Element }) => (
+            <Route
+              key={path}
+              path={path}
+              element={
+                <Suspense fallback={<div>Loading...</div>}>
+                  <Element />
+                </Suspense>
+              }
+            />
+          ))}
+        </Route>
       </Route>
-
-      <Route path="/fantasy-user-setup" element={<FantasyUserSetup />} />
-      <Route path="/" element={<Dashboard />} />
-      <Route path="/rulebook" element={<Rulebook />} />
-      <Route path="/champion" element={<Champion />} />
-      <Route path="/signin" element={<SignIn />} />
-      <Route path="/signup" element={<SignUp />} />
-
       <Route path="*" element={<NotFound />} />
     </Routes>
   );

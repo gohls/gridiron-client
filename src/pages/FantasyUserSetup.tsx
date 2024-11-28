@@ -2,8 +2,7 @@ import React, { useState } from 'react';
 import { post } from '@/services/api';
 import { SleeperUser } from '@/types/sleeper';
 import { useNavigate } from 'react-router-dom';
-
-const SLEEPER_AVATAR_URL = 'https://sleepercdn.com/avatars';
+import env from '@/config/env';
 
 const FantasyUserSetup = () => {
   const [username, setUsername] = useState('');
@@ -106,8 +105,8 @@ const FantasyUserSetup = () => {
                 <div className="space-y-10">
                   <div className="flex items-center gap-x-6 ">
                     <img
-                      alt=""
-                      src={`${SLEEPER_AVATAR_URL}/${sleeperUser.avatar}`}
+                      alt="Sleeper user avatar"
+                      src={`${env.SLEEPER_AVATARS_BASE_URL}${sleeperUser.avatar}`}
                       className="size-16 rounded-full"
                     />
                     <div>
