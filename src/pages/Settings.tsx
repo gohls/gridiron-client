@@ -1,7 +1,7 @@
 import { Button } from '@/components/tailwind/button';
 import { Checkbox, CheckboxField } from '@/components/tailwind/checkbox';
 import { Divider } from '@/components/tailwind/divider';
-import { Label } from '@/components/tailwind/fieldset';
+import { Description, Label } from '@/components/tailwind/fieldset';
 import { Heading, Subheading } from '@/components/tailwind/heading';
 import { Input } from '@/components/tailwind/input';
 import { Select } from '@/components/tailwind/select';
@@ -10,6 +10,9 @@ import { Textarea } from '@/components/tailwind/textarea';
 
 import { useAuth } from '@/hooks/useAuth';
 import { Address } from './Address';
+import { Switch, SwitchField } from '@/components/tailwind/switch';
+import reactLogo from '@/assets/react.svg';
+import { Avatar } from '@/components/tailwind/avatar';
 
 const Settings = () => {
   const { user } = useAuth();
@@ -20,14 +23,29 @@ const Settings = () => {
 
       <section className="grid gap-x-8 gap-y-6 sm:grid-cols-2">
         <div className="space-y-1">
-          <Subheading>Organization Name</Subheading>
+          <Avatar className="size-16" src={reactLogo} />
+        </div>
+        <SwitchField>
+          <Label>Public Profile</Label>
+          <Description>
+            Other users can search and view your profile.
+          </Description>
+          <Switch name="allow_embedding" defaultChecked />
+        </SwitchField>
+      </section>
+
+      <Divider className="my-10" soft />
+
+      <section className="grid gap-x-8 gap-y-6 sm:grid-cols-2">
+        <div className="space-y-1">
+          <Subheading>Username</Subheading>
           <Text>This will be displayed on your public profile.</Text>
         </div>
         <div>
           <Input
-            aria-label="Organization Name"
+            aria-label="Username"
             name="name"
-            defaultValue="Catalyst"
+            defaultValue={user?.username}
           />
         </div>
       </section>
@@ -36,7 +54,30 @@ const Settings = () => {
 
       <section className="grid gap-x-8 gap-y-6 sm:grid-cols-2">
         <div className="space-y-1">
-          <Subheading>Organization Bio</Subheading>
+          <Subheading>User Email</Subheading>
+          <Text>
+            This is used for password reset, user invites, notifications, etc.
+          </Text>
+        </div>
+        <div className="space-y-4">
+          <Input
+            type="email"
+            aria-label="Organization Email"
+            name="email"
+            defaultValue={user?.email}
+          />
+          <CheckboxField>
+            <Checkbox name="email_is_public" defaultChecked />
+            <Label>Show email on public profile</Label>
+          </CheckboxField>
+        </div>
+      </section>
+
+      <Divider className="my-10" soft />
+
+      <section className="grid gap-x-8 gap-y-6 sm:grid-cols-2">
+        <div className="space-y-1">
+          <Subheading>Bio</Subheading>
           <Text>
             This will be displayed on your public profile. Maximum 240
             characters.
@@ -44,27 +85,6 @@ const Settings = () => {
         </div>
         <div>
           <Textarea aria-label="Organization Bio" name="bio" />
-        </div>
-      </section>
-
-      <Divider className="my-10" soft />
-
-      <section className="grid gap-x-8 gap-y-6 sm:grid-cols-2">
-        <div className="space-y-1">
-          <Subheading>Organization Email</Subheading>
-          <Text>This is how customers can contact you for support.</Text>
-        </div>
-        <div className="space-y-4">
-          <Input
-            type="email"
-            aria-label="Organization Email"
-            name="email"
-            defaultValue="info@example.com"
-          />
-          <CheckboxField>
-            <Checkbox name="email_is_public" defaultChecked />
-            <Label>Show email on public profile</Label>
-          </CheckboxField>
         </div>
       </section>
 
