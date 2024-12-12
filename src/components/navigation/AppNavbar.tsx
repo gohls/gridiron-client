@@ -65,7 +65,6 @@ const AppNavbar = () => {
         <Field className="flex items-center gap-4">
           <Text>League</Text>
           <Select name="status ">
-            <option value="active">All</option>
             <option value="league_of_extraordinary_degenerates">
               League of Extraordinary Degenerates
             </option>
