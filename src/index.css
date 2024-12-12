@@ -70,3 +70,20 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 } */
+
+@keyframes blink {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.typewriter.with-cursor::after {
+  content: '|';
+  animation: blink 0.7s infinite;
+}

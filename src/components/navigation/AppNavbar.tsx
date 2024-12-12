@@ -23,13 +23,16 @@ import {
   ShieldCheckIcon,
   UserIcon,
 } from '@heroicons/react/16/solid';
-import { InboxIcon, MagnifyingGlassIcon } from '@heroicons/react/20/solid';
+import { InboxIcon } from '@heroicons/react/20/solid';
 import viteLogo from '@/assets/vite.svg';
 import reactLogo from '@/assets/react.svg';
 import FantasyDropdownMenu from '@/components/navigation/FantasyDropdownMenu';
 import { navItems } from '@/routes/routeConfig';
 import { useLocation } from 'react-router-dom';
 import { useAuth } from '@/hooks/useAuth';
+import { Field } from '../tailwind/fieldset';
+import { Select } from '../tailwind/select';
+import { Text } from '../tailwind/text';
 
 const AppNavbar = () => {
   const { signout } = useAuth();
@@ -59,9 +62,21 @@ const AppNavbar = () => {
       </NavbarSection>
       <NavbarSpacer />
       <NavbarSection>
-        <NavbarItem href="/search" aria-label="Search">
-          <MagnifyingGlassIcon />
-        </NavbarItem>
+        <Field className="flex items-center gap-4">
+          <Text>League</Text>
+          <Select name="status ">
+            <option value="league_of_extraordinary_degenerates">
+              League of Extraordinary Degenerates
+            </option>
+            <option value="pro_fantasizers">Pro Fantasizers</option>
+            <option value="all_fasntasy_football_makes">
+              All Fasntasy Football Makes...
+            </option>
+            <option value="how_do_you_like_them_league">
+              How Do You Like Them League
+            </option>
+          </Select>
+        </Field>
         <NavbarItem href="/inbox" aria-label="Inbox">
           <InboxIcon />
         </NavbarItem>
