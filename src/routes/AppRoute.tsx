@@ -5,7 +5,7 @@ import NotFound from '@/pages/NotFound';
 import SignUp from '@/pages/SignUp';
 import SignIn from '@/pages/SignIn';
 import FantasyUserSetup from '@/pages/FantasyUserSetup';
-import AppStackedLayout from '@/layout/AppStackedLayout';
+import StackedLayout from '@/layout/StackedLayout';
 import AppNavbar from '@/components/navigation/AppNavbar';
 import AppSidebar from '@/components/navigation/AppSidebar';
 import { ROUTES, protectedRoutes } from '@/routes/routeConfig';
@@ -20,9 +20,9 @@ const AppRoute = () => {
       <Route element={<ProtectedRoute />}>
         <Route
           element={
-            <AppStackedLayout navbar={<AppNavbar />} sidebar={<AppSidebar />}>
+            <StackedLayout navbar={<AppNavbar />} sidebar={<AppSidebar />}>
               <Outlet />
-            </AppStackedLayout>
+            </StackedLayout>
           }
         >
           {protectedRoutes.map(({ path, element: Element }) => (
