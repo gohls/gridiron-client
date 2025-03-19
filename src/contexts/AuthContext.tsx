@@ -48,9 +48,10 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     if (token) {
       const encryptedToken = encryptToken(token);
       localStorage.setItem(env.AUTH_TOKEN_KEY, encryptedToken);
-    } else {
-      localStorage.removeItem(env.AUTH_TOKEN_KEY);
     }
+    // else {
+    //   localStorage.removeItem(env.AUTH_TOKEN_KEY);
+    // }
   };
 
   const encryptToken = (token: string): string => {
