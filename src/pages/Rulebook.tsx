@@ -12,7 +12,7 @@ const RuleBook = () => {
         />
         <div className="mx-auto max-w-2xl text-center">
           <h2 className="text-5xl font-semibold tracking-tight text-white sm:text-7xl ">
-            2024 Rulebook
+            2024 RULEBOOK
           </h2>
           <p className="mt-8 text-pretty text-lg font-medium text-gray-400 sm:text-xl/8">
             Explore the official 2024 NFL rulebook.
