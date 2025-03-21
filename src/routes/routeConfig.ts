@@ -23,7 +23,7 @@ export const protectedRoutes = [
   { path: ROUTES.HOME, element: Home, label: 'Home' },
   { path: ROUTES.RULEBOOK, element: Rulebook, label: 'Rulebook' },
   { path: ROUTES.CHAMPION, element: Champion, label: 'Champion' },
-  { path: ROUTES.HALL_OF_FAME, element: HallOfFame, label: 'Hall of Fame' },
+  { path: ROUTES.HALL_OF_FAME, element: HallOfFame, label: 'HoF' },
   { path: ROUTES.SETTINGS, element: Settings, label: 'Settings' },
   { path: ROUTES.PROFILE, element: Profile, label: 'Profile' },
 ];
